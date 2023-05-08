@@ -1,0 +1,47 @@
+/* Tabelle */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Tabellenkopf */
+thead {
+    background-color: #000000;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #000000;
+}
+
+/* Zeilenabwechslung */
+tbody tr:nth-child(even) {
+    background-color: #000000;
+}
+
+/* Spaltenbreite für Mitarbeiter ID */
+td:nth-child(1) {
+    width: 10%;
+}
+
+/* Spaltenbreite für Name */
+td:nth-child(2) {
+    width: 20%;
+}
+
+/* Spaltenbreite für Rolle */
+td:nth-child(3) {
+    width: 20%;
+}
+
+/* Spaltenbreite für Total Bestellungen */
+td:nth-child(4) {
+    width: 25%;
+}
+
+/* Spaltenbreite für Abgerechnet */
+td:nth-child(5) {
+    width: 25%;
+}

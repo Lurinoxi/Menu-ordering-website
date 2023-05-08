@@ -1,0 +1,27 @@
+.dropdown-container {
+	position: absolute;
+	right: 1px;
+	top: 350px;
+	
+	
+  }
+  
+  select {
+	padding: 8px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	margin-right: 10px;
+  }
+  
+  input[type=submit] {
+	background-color: #4CAF50;
+	color: white;
+	padding: 8px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  
