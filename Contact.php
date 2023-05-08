@@ -1,35 +1,38 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-        <title>Kontaktiere Uns!</title>
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap"
-        rel="stylesheet">
-        <link rel="stylesheet" href="../food/css/contact-us.css">
-        <body>
-        <div class="logo">
-                <a href="../food/index.php" title="Logo">
-                    <img src="images/Menu Logo.png" alt="Mama Bringts" class="img-responsive">
-                </a>
-            </div>
-            <div class="container">
-                <h1>Kontaktiere Uns</h1>
-                <p>Bitte sende uns hier dein Anliegen, unser Team wird sich schnellstmöglich drum kümmern!</p>
-                <form action="mail.php" method="POST">
-                    <label for="name">Name:</label>
-                    <input type="name" name="name" id="name">
-                    <label for="email">E-Mail:</label>
-                    <input type="email" name="email">
-                    <label for="anliegen">Ihr Anliegen:</label>
-                    <input type="anliegen" name="anliegen">
-                    <label for="message">Message:</label>
-                    <textarea name="message" cols="30" rows="10"></textarea>
-                    <input type="submit" value="Absenden">
-                </form>
+<?php
+// Inkludiere die PHPMailer-Bibliothek
+require 'phpmailer/PHPMailer.php';
+require 'phpmailer/SMTP.php';
+require 'phpmailer/Exception.php';
 
-            </div>
-        </body>
-    </head>
-</html>
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+// E-Mail-Einstellungen
+$empfaenger = 'vorname.nachname@example.com'; // E-Mail-Adresse des Empfängers
+$betreff = 'Menü-Bestellung erinnern'; // Betreff der E-Mail
+$nachricht = 'Bitte nicht vergessen, Ihr Menü vor Mittwoch zu bestellen.'; // Inhalt der E-Mail
+
+// Erstelle eine neue Instanz von PHPMailer
+$mail = new PHPMailer();
+$mail->isSMTP(); // Verwende SMTP zum Senden der E-Mail
+$mail->Host = 'smtp.example.com'; // SMTP-Host
+$mail->Port = 587; // SMTP-Port
+$mail->SMTPAuth = true; // SMTP-Authentifizierung verwenden
+$mail->Username = 'username'; // Benutzername für den SMTP-Server
+$mail->Password = 'password'; // Passwort für den SMTP-Server
+$mail->SMTPSecure = 'tls'; // Verschlüsselungstyp (tls oder ssl)
+
+// E-Mail-Einstellungen konfigurieren
+$mail->setFrom('noreply@example.com', 'Mein Restaurant'); // Absender-E-Mail-Adresse und -Name
+$mail->addAddress($empfaenger); // Empfänger-E-Mail-Adresse
+$mail->Subject = $betreff; // Betreff der E-Mail
+$mail->Body = $nachricht; // Inhalt der E-Mail
+
+// Sende die E-Mail
+if ($mail->send()) {
+    echo 'Erinnerungs-E-Mail wurde erfolgreich gesendet.';
+} else {
+    echo 'Fehler beim Senden der Erinnerungs-E-Mail: ' . $mail->ErrorInfo;
+}
+?>

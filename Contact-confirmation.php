@@ -7,7 +7,7 @@
         <title>Kontaktiere Uns!</title>
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="contact-us.css">
+        <link rel="stylesheet" href="../food/css/contact-us.css">
         <body>
             <div class="container">
                 <h1>Danke fürs Kontaktieren!</h1>

@@ -21,12 +21,13 @@
                 $row=mysqli_fetch_assoc($res);
                 $title = $row['title'];
                 $price = $row['price'];
+                $kw = $row['KW'];
                 $image_name = $row['image_name'];
             }
             else
             {
                 //Daten nicht da 
-                //Weiterleiten auf HP
+                //Weiterleiten auf Homepage
                 header('location:'.SITEURL);
             }
         }
@@ -37,11 +38,11 @@
         }
     ?>
 
-    <!-- fOOD sEARCH Section Starts Here -->
+    <!-- Start -->
     <section class="food-search">
         <div class="container">
             
-            <h2 class="text-center text-white">Füll dieses Formular aus um die Bestellung abzuschicken.</h2>
+            <h2 class="text-center text-Black">Füllen Sie dieses Formular aus um die Bestellung abzuschicken.</h2>
 
             <form action="" method="POST" class="order">
                 <fieldset>
@@ -72,8 +73,10 @@
                     <div class="food-menu-desc">
                         <h3><?php echo $title; ?></h3>
                         <input type="hidden" name="food" value="<?php echo $title; ?>">
-                        <p class="food-price"><?php echo $price; ?></p>
+                        <p class="food-price">€<?php echo $price; ?></p>
                         <input type="hidden" name="price" value="<?php echo $price; ?>">
+                        <p class="food-kw">KW: <?php echo $kw; ?></p>
+                        <input type="hidden" name="KW" value="<?php echo $kw; ?>">
 
                     </div>
 
@@ -81,11 +84,11 @@
                 
                 <fieldset>
                     <legend>Delivery Details</legend>
-                    <div class="order-label">Full Name</div>
+                    <div class="order-label">Name</div>
                     <input type="text" name="full-name" placeholder="E.g. Max Mustermann" class="input-responsive" required>
 
                     <div class="order-label">Email</div>
-                    <input type="email" name="email" placeholder="E.g. hi@vijaythapa.com" class="input-responsive" required>
+                    <input type="email" name="email" placeholder="E.g. Max.Mustermann@sie.at" class="input-responsive" required>
 
                     <input type="submit" name="submit" value="Confirm Order" class="btn btn-primary">
                 </fieldset>
@@ -101,8 +104,9 @@
 
                     $food = $_POST['food'];
                     $price = $_POST['price'];
-                    $order_date = date("Y-m-d h:i:sa"); //Bestell Zeit
-                    $customer_email = $_POST['email'];
+                    $kw = $_POST['KW'];
+                    $order_date = date("Y-m-d"); //Bestell Zeit
+                    $email = $_POST['email'];
 
 
                     // Bestellung in DB sichern
@@ -110,8 +114,9 @@
                     $sql2 = "INSERT INTO tbl_order SET
                         food ='$food',
                         price ='$price',
+                        KW ='$kw',
                         order_date ='$order_date',
-                        customer_email ='$customer_email'
+                        email ='$email'
                     ";
 
                     //query ausführen
@@ -138,6 +143,5 @@
 
         </div>
     </section>
-    <!-- fOOD sEARCH Section Ends Here -->
-
+<!-- Stop -->
     <?php include('partials-front/footer.php')?>
